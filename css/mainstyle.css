@@ -1,5 +1,5 @@
     #wrapper {
-        background-color: aqua;
+        
     }
     body {
         background-color: bisque;
@@ -64,7 +64,17 @@
         display: table;
         clear: both;
     }
+    #point{
+        margin-top: 6px;
+        margin-bottom: 6px
+    }
+    #noti{
+        margin-top: 6px;
+        margin-bottom: 6px
+    }
 
 #mainarea { position: relative;  width: 980px; z-index: 9; }
-#mainarealeft { float: left; width: 240px;  border-style:solid; } 
-#mainarearight { float: right; width: 740px; display: block; background-color:  powderblue; }
+#mainarealeft { float: left; width: 25%; border-style:solid; } 
+#mainarearight { float: right; width: 75%; display: block; background-color:  powderblue; border-style:solid; }
+#toparea{width: 84% ;border-style: solid;}
+#message{width: auto;}
