@@ -4,14 +4,70 @@
         <title>ระบบยืม/แลกเปลี่ยนหนังสือ</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel ="stylesheet" href ="css/mainstyle.css">
+        <script>
+            var slideIndex = 1;
+            showSlides(slideIndex);
+
+            // Next/previous controls
+            function plusSlides(n) {
+            showSlides(slideIndex += n);
+            }
+
+            // Thumbnail image controls
+            function currentSlide(n) {
+            showSlides(slideIndex = n);
+            }
+
+            function showSlides(n) {
+            var i;
+            var slides = document.getElementsByClassName("mySlides");
+            var dots = document.getElementsByClassName("dot");
+            if (n > slides.length) {slideIndex = 1} 
+            if (n < 1) {slideIndex = slides.length}
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none"; 
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex-1].style.display = "block"; 
+            dots[slideIndex-1].className += " active";
+            }
+        </script>
     </head>
         <body>
             <div id="wrapper">
                 <div id="toparea">
-                    <div id="message">
+                    <!-- Slideshow container -->
+                    <div class="slideshow-container">
+
+                    <!-- Full-width images with number and caption text -->
+                    <div class="mySlides fade">
+                        <div class="numbertext">1 / 2</div>
+                            <p>ระบบยืม</p>
                        
-                        ระบบยืมและแลกเปลี่ยนหนังสือในสถาบัน 
- เป็นระบบการใหย้มื แลก หนังสือสำหรับนักศึกษาภายในสถาบนัเทคโนโลยพีระจอมเกลา้เจา้คุณทหาร ลาดกระบงั โดยเป็นรูปแบบของเวป็ไซต์ ที่จะให้ผู้สามารถแบ่งปันหนังสือที่ตนเองไม่ได้ใช้ หรือหนังสือที่อ่าน แล้วอยากแบ่งปันให้คนอื่น โดยการถ่ายรูปหนังสือของตนเองลงไปในหน้า Feed ของเวป็ไซต ์และรอผทู้ี่สนใจ มาขอยมืโดยใช้ Point เป็นการแลกเปลี่ยน หรือใชห้นงัสือของตนเองในการขอแลกเปลี่ยนได ้ซ่ึงผขู้อยมืหรือแก ลกเปลี่ยนนั้นจะต้องอ่านข้อตกลงของการแลกเปลี่ยนให้ดี ส่วนผู้ที่เป็นเจ้าของหนังสือนั้นต้องกดยืนยันเพอื่ให้ การแลกเปลี่ยนส าเร็จ ในกรณีที่เป็นการขอยืม ผู้ใช้จะมีการก าหนดช่วงเวลาในการยืมด้วยตนเอง และผู้ขอยืม ต้องคืนหนังสือภายในระยะเวลาที่ก าหนด หากเกินระยะเวลาแล้วยังไม่คืนอาจท าให้เกิดการด าเนินการบางอย่าง ของผู้ให้ยืม ซึ่งตรงส่วนนี้เป็นส่วนที่ผู้ใช้ต้องจัดการ เราท าหน้าที่เป็นตัวกลางในการแลกเปลี่ยนเท่านั้น ซึ่ง เนื่องจากเราให้ใช้อีเมล์สถาบันในการสมัคร ซึ่งเป็นรหัสนักศึกษา ท าให้สามารถระบุตัวตนของคนนั้นๆได้ แต่ ทางเราก็มีมาตรการในการจัดการกับผู้ที่ไม่ท าตามกติกา โดยการท าให้ผู้ใช้คนนั้นไม่สามารถยืมหนังสือของคน อื่นต่อได้ หากยังไม่คืนหนังสือที่ยืมมา  เว็บไซต์ของเราเป็นเหมือนกับสื่อกลาง community ในการแลกเปลี่ยนซึ่งไม่มีเงินสดเข้ามาเกี่ยวข้อง เรา ไม่มีระบบเติมเงินเป็น Point แต่ว่าเราจะมี Point เริ่มแรกให้กับผู้ใช้จ านวนหนึ่ง และที่เหลือ การที่จะได้ Point มา นั้นต้องเกิดจากการให้ผู้อื่นยืมหนังสือ และเรามีระบบ Login Bonus เพื่อให้ผู้ที่อยากยืมแต่ไม่มีหนังสือให้คนอื่น ยมืไดม้ีโอกาสใชง้านระบบของเรา
+                    </div>
+
+                    <div class="mySlides fade">
+                        <div class="numbertext">2 / 2</div>
+                            <p>6666666666666666666666666666666666666666666</p>
+                        
+                    </div>
+
+                    
+
+                    <!-- Next and previous buttons -->
+                    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                    </div>
+                    <br>
+
+                    <!-- The dots/circles -->
+                    <div style="text-align:center">
+                    <span class="dot" onclick="currentSlide(1)"></span> 
+                    <span class="dot" onclick="currentSlide(2)"></span> 
+                     
+                    </div>
                        
                     </div>
                 </div>
