@@ -69,6 +69,58 @@ function insertData(email,dname,psw){
         dname:dname,
         psw:psw
     });
-    alert("ลงทะเบียนสำเร็จ");
-    window.location.href="index.html";
+    
+    firebase.auth().createUserWithEmailAndPassword(email, psw).catch(function(error) {
+        // Handle Errors here.
+       
+        // ...
+      });
+      alert("ลงทะเบียนสำเร็จ กดตกลงและรอซักครู่");
+      var delayInMilliseconds = 3000; //1 second
+
+        setTimeout(function() {
+        //your code to be executed after 1 second
+        window.location.replace("index.html");
+        }, delayInMilliseconds);
+    
+}
+
+
+
+/*Login system */
+/*function loginOnClick(){
+    var email=document.getElementById('email').value;
+    var psw = document.getElementById('psw').value;
+    firebase.auth().signInWithEmailAndPassword(email, psw).catch(function(error) {
+        // Handle Errors here.
+       alert("Login success");
+        // ...
+      });
+}*/
+
+
+/*Not using now */
+function initApp(){
+    firebase.auth().onAuthStateChanged(function(user){
+        //document.getElementById('quickstart-verify-email').disabled = true;
+        if(user){
+            var displayName = user.displayName;
+            var email = user.email;
+            var emailVerified = user.emailVerified;
+            var photoURL = user.photoURL;
+            var isAnonymous = user.isAnonymous;
+            var uid =user.uid;
+            var providerData = user.providerData;
+            //document.getElementById('quickstart-sign-in-status').textContent ='Signed in';
+            document.getElementById('login').value = 'ออกจากระบบ';
+            //document.getElementById('quickstart-account-details').textContent =JSON.stringify(user, null ,' ');
+           /* if(!emailVerified){
+                document.getElementById('quickstart-verify-email').disabled = fales;
+            }*/
+        }else{
+            //document.getElementById('quickstart-sign-in-status').textContent ='Signed out';
+            document.getElementById('login').value = 'เข้าสู่ระบบ';
+            //document.getElementById('quickstart-account-details').textContent ="null";
+        }
+    });
 }
