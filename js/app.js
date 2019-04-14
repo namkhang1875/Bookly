@@ -69,19 +69,28 @@ function insertData(email,dname,psw){
         dname:dname,
         psw:psw
     });
-    
+    var errorCode;
+    var isEmailExist;
     firebase.auth().createUserWithEmailAndPassword(email, psw).catch(function(error) {
         // Handle Errors here.
-       
+        errorCode = error.code;
+        if(errorCode = 'auth/email-already-in-use'){
+            alert("อีเมลนี้มีผู้ใช้งานแล้ว");
+            isEmailExist = true;
+        }
         // ...
       });
-      alert("ลงทะเบียนสำเร็จ กดตกลงและรอซักครู่");
-      var delayInMilliseconds = 3000; //1 second
-
-        setTimeout(function() {
-        //your code to be executed after 1 second
-        window.location.replace("index.html");
-        }, delayInMilliseconds);
+        alert("กำลังตรวจสอบ กดตกลงและรอซักครู่");     
+        var delayInMilliseconds = 3000; //1 second
+        setTimeout(function(){       
+            if(!isEmailExist){
+                
+                //your code to be executed after 1 second
+                alert("ลงทะเบียนสำเร็จ กดตกลง");
+                window.location.replace("index.html");
+                
+            }
+        },delayInMilliseconds);
     
 }
 
