@@ -3,8 +3,7 @@
     }
     body {
         background-color: bisque;
-        
-    
+        display: block;
     }
     * {
         box-sizing: border-box;
@@ -56,6 +55,9 @@
         float: left;
         width: 75%;
         margin-top: 6px;
+    }
+    .row{
+        max-height: 50px;
     }
     .row:after {
         content: "";
@@ -124,9 +126,9 @@
 
 
 #mainarea {  width: 100%;  }
-#mainarealeft { float: left; width: 25%; border-style:solid; } 
+#mainarealeft {  width: 25%; border-style:solid; } 
 #mainarearight { float: right; width: 75%;  background-color:  powderblue; border-style:solid; }
-#toparea{width: 100% ;border-style: solid;}
+#toparea{width: 100% ;border-style: solid; }
 
 
 /* Slideshow container */
