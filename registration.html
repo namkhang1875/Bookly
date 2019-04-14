@@ -4,10 +4,19 @@
         <title>หน้าลงทะเบียน</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel ="stylesheet" href ="css/style.css">
+        <script type="text/javascript" src="js/app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase.js"></script>
         <script>
-            function msg() {
-            alert("Hello world!");
-        }
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyC5qzu9jGoaS0lPEsLN57-5jduifASd_Ks",
+            authDomain: "softdevdb-d19a4.firebaseapp.com",
+            databaseURL: "https://softdevdb-d19a4.firebaseio.com",
+            projectId: "softdevdb-d19a4",
+            storageBucket: "softdevdb-d19a4.appspot.com",
+            messagingSenderId: "300422296810"
+        };
+        firebase.initializeApp(config);
         </script>
     </head>
         <body  >
@@ -49,7 +58,7 @@
                             </div>
                             </div>
                             <div class="row">
-                            <input type="submit" value="ลงทะเบียน" onclick="msg()">
+                            <input id="btnSubmit"type="submit" value="ลงทะเบียน" onclick="submitOnClick()">
                             </div>
                
             </div>
