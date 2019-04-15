@@ -29,12 +29,13 @@
         color: black;
         padding: 12px 20px;
         border: none;
-        border-radius: 4px; <!--ขัดกรอบให้มน-->
+        border-radius: 4px; /* <!--ขัดกรอบให้มน-->*/
         cursor: pointer;
-        max-width: 45%;
+        max-width: 35%;
         margin-right:5%;
         margin-left:2.5%;
         margin-top:2.5%;
+        text-align: center;
     }
     input[type=button]:hover {
         background-color: #45a049;
@@ -95,7 +96,7 @@
         color: black;
         padding: 12px 20px;
         border: none;
-        border-radius: 4px; <!--ขัดกรอบให้มน-->
+        border-radius: 4px; /*<!--ขัดกรอบให้มน-->*/
         cursor: pointer;
         max-width: 45%;
         margin-right:5%;

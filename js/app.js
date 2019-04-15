@@ -74,39 +74,112 @@ function insertData(email,dname,psw){
     firebase.auth().createUserWithEmailAndPassword(email, psw).catch(function(error) {
         // Handle Errors here.
         errorCode = error.code;
-        if(errorCode = 'auth/email-already-in-use'){
+        if(errorCode == 'auth/email-already-in-use'){
             alert("อีเมลนี้มีผู้ใช้งานแล้ว");
             isEmailExist = true;
         }
         // ...
       });
+      
         alert("กำลังตรวจสอบ กดตกลงและรอซักครู่");     
-        var delayInMilliseconds = 3000; //1 second
+        var delayInMilliseconds = 3000; //3 second
         setTimeout(function(){       
             if(!isEmailExist){
-                
-                //your code to be executed after 1 second
+                //your code to be executed after 3 second
                 alert("ลงทะเบียนสำเร็จ กดตกลง");
                 window.location.replace("index.html");
                 
             }
         },delayInMilliseconds);
+
+}
+
+/*Login system */
+function loginOnClick(){
+    var email=document.getElementById('email').value;
+    var psw = document.getElementById('psw').value;
+    var isCannotLogin;
+    firebase.auth().signInWithEmailAndPassword(email, psw).catch(function(error) {
+        // Handle Errors here.
+       
+       var errorCode = error.code;
+        if(errorCode == 'auth/wrong-password'){
+            alert('รหัสผ่านไม่ถูกต้อง กรุณาใส่ใหม่');
+            isCannotLogin = true;
+        }else if(errorCode == 'auth/user-not-found'){
+            alert('อีเมลนี้ยังไม่ได้ลงทะเบียน กรุณากดลงทะเบียน');
+            isCannotLogin = true;
+        }
+      });
+
+      alert("กำลังตรวจสอบ กดตกลงและรอซักครู่");
+      var delayInMilliseconds = 3000; //3 second
+        setTimeout(function(){       
+            if(!isCannotLogin){
+                //your code to be executed after 3 second
+                alert("เข้าสู่ระบบสำเร็จ กรุณากดตกลง");
+                changeStatus(email);
+                //window.location.replace("index.html");
+            }
+        },delayInMilliseconds);
+
+}
+
+function changeStatus(email){
+    var old_element = document.querySelector('#email');
+    var new_element = document.createElement('div');
+    new_element.id = 'loginstatus';
+    new_element.innerHTML = email;
+    old_element.replaceWith(new_element);
+
+    var old_element = document.querySelector('#login');
+    var new_element = document.createElement('input');
+    new_element.id = 'logout';
+    new_element.type = 'button';
+    new_element.value = 'ออกจากระบบ';
+    //new_element.onclick = logoutOnClick();
+    old_element.replaceWith(new_element);
     
 }
 
+function logoutOnClick(){
+    var isCannotLogout;
+    firebase.auth().signOut().then(function() {
+        // Sign-out successful.
+        
 
-
-/*Login system */
-/*function loginOnClick(){
-    var email=document.getElementById('email').value;
-    var psw = document.getElementById('psw').value;
-    firebase.auth().signInWithEmailAndPassword(email, psw).catch(function(error) {
-        // Handle Errors here.
-       alert("Login success");
-        // ...
+      }).catch(function(error) {
+        // An error happened.
+        isCannotLogout = true;
+        var errorCode = error.code;
+        alert(errorCode); 
       });
-}*/
+      var delayInMilliseconds = 3000; //3 second
+      setTimeout(function(){  
+        if(!isCannotLogout){
+            alert("ออกจากระบบสำเร็จ กรุณากดตกลง");
+            changeStatusBack();
+        }
+    },delayInMilliseconds);
+    
+}
+function changeStatusBack(){
+        var old_element = document.querySelector('#loginstatus');
+        var new_element = document.createElement('input');
+        new_element.type ='text';
+        new_element.id = 'email';
+        new_element.name = 'email';
+        new_element.placeholder = 'โปรดใช้อีเมลสถาบัน';
+        old_element.replaceWith(new_element);
 
+        var old_element = document.querySelector('#logout');
+        var new_element = document.createElement('input');
+        new_element.id = 'login';
+        new_element.type = 'button';
+        new_element.value = 'เข้าสู่ระบบ';
+        new_element.onclick = loginOnClick();
+        old_element.replaceWith(new_element);
+}
 
 /*Not using now */
 function initApp(){
