@@ -81,6 +81,7 @@ function insertData(email,dname,psw){
         // ...
       });
       
+
         alert("กำลังตรวจสอบ กดตกลงและรอซักครู่");     
         var delayInMilliseconds = 3000; //3 second
         setTimeout(function(){       
@@ -134,20 +135,40 @@ function changeStatus(email){
 
     var old_element = document.querySelector('#login');
     var new_element = document.createElement('input');
-    new_element.id = 'logout';
-    new_element.type = 'button';
-    new_element.value = 'ออกจากระบบ';
-    //new_element.onclick = logoutOnClick();
+    
+        new_element.id = 'logout';
+        new_element.type = 'button';
+        new_element.value = 'ออกจากระบบ';
+        new_element.onclick = function (){
+            firebase.auth().signOut();
+            alert("ออกจากระบบสำเร็จ กรุณากดตกลง");
+            changeStatusBack();
+    
+        };
+  
+
     old_element.replaceWith(new_element);
     
+    
+
+}
+function logout(){
+    var element = document.getElementById('#logout');
+    element.onclick = 'logoutOnClick()';
 }
 
 function logoutOnClick(){
     var isCannotLogout;
+    
+    firebase.auth().signOut();
+    
+    alert("ออกจากระบบสำเร็จ กรุณากดตกลง");
+    changeStatusBack();
+    
+    /*
     firebase.auth().signOut().then(function() {
         // Sign-out successful.
         
-
       }).catch(function(error) {
         // An error happened.
         isCannotLogout = true;
@@ -161,10 +182,11 @@ function logoutOnClick(){
             changeStatusBack();
         }
     },delayInMilliseconds);
-    
+    */
+
 }
 function changeStatusBack(){
-        var old_element = document.querySelector('#loginstatus');
+        var old_element = document.getElementById('loginstatus');
         var new_element = document.createElement('input');
         new_element.type ='text';
         new_element.id = 'email';
@@ -172,12 +194,39 @@ function changeStatusBack(){
         new_element.placeholder = 'โปรดใช้อีเมลสถาบัน';
         old_element.replaceWith(new_element);
 
-        var old_element = document.querySelector('#logout');
+        var old_element = document.getElementById('logout');
         var new_element = document.createElement('input');
         new_element.id = 'login';
         new_element.type = 'button';
         new_element.value = 'เข้าสู่ระบบ';
-        new_element.onclick = loginOnClick();
+        new_element.onclick = function loginOnClick(){
+            var email=document.getElementById('email').value;
+            var psw = document.getElementById('psw').value;
+            var isCannotLogin;
+            firebase.auth().signInWithEmailAndPassword(email, psw).catch(function(error) {
+                // Handle Errors here.
+            
+            var errorCode = error.code;
+                if(errorCode == 'auth/wrong-password'){
+                    alert('รหัสผ่านไม่ถูกต้อง กรุณาใส่ใหม่');
+                    isCannotLogin = true;
+                }else if(errorCode == 'auth/user-not-found'){
+                    alert('อีเมลนี้ยังไม่ได้ลงทะเบียน กรุณากดลงทะเบียน');
+                    isCannotLogin = true;
+                }
+            });
+
+            alert("กำลังตรวจสอบ กดตกลงและรอซักครู่");
+            var delayInMilliseconds = 3000; //3 second
+                setTimeout(function(){       
+                    if(!isCannotLogin){
+                        //your code to be executed after 3 second
+                        alert("เข้าสู่ระบบสำเร็จ กรุณากดตกลง");
+                        changeStatus(email);
+                        //window.location.replace("index.html");
+                    }
+                },delayInMilliseconds);
+            }
         old_element.replaceWith(new_element);
 }
 
