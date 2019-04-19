@@ -3,7 +3,6 @@ function signUpOnClick(){
     var dname=document.getElementById('dname').value;
     var psw=document.getElementById('psw').value;
     var cpsw = document.getElementById('cpsw').value;
-    var point = 100;
 
     var isEmailOk =false;
     var isDnameOk =false;
@@ -48,7 +47,7 @@ function signUpOnClick(){
         isCpswOk = true;
     }
     if((isEmailOk&&isDnameOk)&&(isPswOk&&isCpswOk)){
-        insertData(email,dname,psw,point);
+        insertData(email,dname,psw);
     } 
 }
 
@@ -63,13 +62,13 @@ function showData(){
     });
 }
 
-function insertData(email,dname,psw,point){
+function insertData(email,dname,psw){
     var firebaseRef = firebase.database().ref("User");
     firebaseRef.push({
         email:email,
         dname:dname,
         psw:psw,
-        point:point
+        point:"100"
     });
     var errorCode;
     var isEmailExist;
