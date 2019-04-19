@@ -53,7 +53,6 @@ function signUpOnClick(){
 
 window.onload=function(){
    //showData();
-   dailypoint();
 }
 
 function showData(){
@@ -147,6 +146,7 @@ function loginOnClick(){
                 //your code to be executed after 3 second
                 alert("เข้าสู่ระบบสำเร็จ กรุณากดตกลง");
                 changeStatus(email);
+                dailypoint();
                 //window.location.replace("index.html");
             }
         },delayInMilliseconds);
