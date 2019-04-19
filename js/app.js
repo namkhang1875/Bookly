@@ -280,12 +280,14 @@ function dailypoint(){
     var date_now = date.toString()
     var date_now_substring = date_now.substring(0,15);
     var date_lastlogin_substring;
+    var user_point;
     console.log("login time : " + date_now);
     if(user != null){
         var firebaseRef = firebase.database().ref("User").child(user.uid);
         firebaseRef.once('value').then(function(dataSnapshot) {
         date_lastlogin = dataSnapshot.val().lastlogindate;
         date_lastlogin_substring = date_lastlogin.substring(0,15);
+        user_point = dataSnapshot.val().point;
         console.log("last login time : " + date_lastlogin);
         });
         if(date_lastlogin == date_now_substring)
@@ -295,7 +297,7 @@ function dailypoint(){
         }
         else
         {
-            point = dataSnapshot.val().point + 1;
+            point = user_point.val().point + 1;
             lastlogindate = date_now;
             data = {lastlogindate,point}
             firebaseRef.update(data);
