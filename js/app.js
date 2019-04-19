@@ -285,7 +285,7 @@ function dailypoint(){
     var date = Date(Date.now());
     var date_now = date.toString()
     if(user != null){
-        date_lastlogin = user.date;
+        date_lastlogin = user.testing;
         console.log(date_lastlogin);
     }
 }
