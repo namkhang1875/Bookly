@@ -279,14 +279,15 @@ function dailypoint(){
     var date = Date(Date.now());
     var date_now = date.toString()
     var date_now_substring = date_now.substring(0,15);
+    var date_lastlogin_substring;
     console.log("login time : " + date_now);
     if(user != null){
         var firebaseRef = firebase.database().ref("User").child(user.uid);
         firebaseRef.once('value').then(function(dataSnapshot) {
         date_lastlogin = dataSnapshot.val().lastlogindate;
+        date_lastlogin_substring = date_lastlogin.substring(0,15);
         console.log("last login time : " + date_lastlogin);
         });
-        date_lastlogin = date_lastlogin.substring(0,15);
         if(date_lastlogin == date_now_substring)
         {
             lastlogindate = date_now;
