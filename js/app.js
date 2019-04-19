@@ -289,7 +289,7 @@ function dailypoint(){
         console.log(user);
     }
     if(user != null){
-        var firebaseRef = firebase.database().ref("User" + user.uid);
+        var firebaseRef = firebase.database().ref("User").child(user.uid);
         firebaseRef.once('value').then(function(dataSnapshot) {
         console.log(dataSnapshot.val());
         });
