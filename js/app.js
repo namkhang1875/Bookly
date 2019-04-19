@@ -53,6 +53,7 @@ function signUpOnClick(){
 
 window.onload=function(){
    //showData();
+   dailypoint();
 }
 
 function showData(){
@@ -146,7 +147,6 @@ function loginOnClick(){
                 //your code to be executed after 3 second
                 alert("เข้าสู่ระบบสำเร็จ กรุณากดตกลง");
                 changeStatus(email);
-                dailypoint();
                 //window.location.replace("index.html");
             }
         },delayInMilliseconds);
@@ -262,8 +262,10 @@ function dailypoint(){
     var date_lastlogin;
     var date = Date(Date.now());
     var date_now = date.toString()
-    date_lastlogin = user.date;
-    console.log(date_lastlogin);
+    if(user != null){
+        date_lastlogin = user.date;
+        console.log(date_lastlogin);
+    }
 }
 
 /*Not using now */
