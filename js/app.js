@@ -64,11 +64,14 @@ function showData(){
 
 function insertData(email,dname,psw){
     var firebaseRef = firebase.database().ref("User");
+    var date = Date(Date.now());
+    date_now = date.toString()
     firebaseRef.push({
         email:email,
         dname:dname,
         psw:psw,
-        point:"100"
+        point:"100",
+        date:date_now
     });
     var errorCode;
     var isEmailExist;
