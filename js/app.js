@@ -258,6 +258,7 @@ function changeStatusBack(){
 }
 function dailypoint(){
     var user = firebase.auth().currentUser;
+    console.log(user);
     var date_lastlogin;
     var date = Date(Date.now());
     var date_now = date.toString()
