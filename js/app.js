@@ -128,15 +128,6 @@ function loginOnClick(){
                 //window.location.replace("index.html");
             }
         },delayInMilliseconds);
-    
-    var user = firebase.auth().currentUser;
-    var lastLoginDate;
-    if(user != null)
-    {
-        lastLoginDate = user.date;
-        console.log(lastLoginDate);
-    }
-
 }
 
 function changeStatus(email){
