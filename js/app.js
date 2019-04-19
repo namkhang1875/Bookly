@@ -221,6 +221,26 @@ function changeStatusBack(){
             var email=document.getElementById('email').value;
             var psw = document.getElementById('psw').value;
             var isCannotLogin;
+            var isEmailOk = false;
+            var isPswOk = false;
+            var mailre = '^[0-9]{8}@kmitl.[a-z]{2}.[a-z]{2}$';
+
+            if(email.match(mailre)){
+                console.log("email Ok");
+                isEmailOk = true;
+            }
+    
+            else if(!email.match(mailre)){
+                alert("โปรดใช้อีเมลสถาบัน");
+            }
+            if(psw.length==0){
+                alert("โปรดใส่รหัสผ่าน");
+            }
+            else if(psw.length >0){
+                console.log("password Ok");
+                isPswOk = true;
+            }
+            if(isEmailOk&&isPswOk){
             firebase.auth().signInWithEmailAndPassword(email, psw).catch(function(error) {
                 // Handle Errors here.
             
@@ -241,10 +261,12 @@ function changeStatusBack(){
                         //your code to be executed after 3 second
                         alert("เข้าสู่ระบบสำเร็จ กรุณากดตกลง");
                         changeStatus(email);
+                        dailypoint();
                         //window.location.replace("index.html");
                     }
                 },delayInMilliseconds);
             }
+        }
         old_element.replaceWith(new_element);
 }
 function dailypoint(){
@@ -255,9 +277,15 @@ function dailypoint(){
     var date_now = date.toString()
     date_lastlogin = user.date;
     console.log(date_lastlogin);
+    if(user == null){
+        user = firebase.auth().currentUser;
+        console.log(user);
+    }
     if(user != null){
-        date_lastlogin = user.date;
-        console.log(date_lastlogin);
+        var firebaseRef = firebase.database().ref("User" + user.uid);
+        firebaseRef.once('value').then(function(dataSnapshot) {
+        console.log(dataSnapshot.val());
+        });
     }
 }
 
