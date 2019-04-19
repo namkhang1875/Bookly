@@ -284,7 +284,7 @@ function dailypoint(){
     console.log("login time : " + date_now);
     if(user != null){
         var firebaseRef = firebase.database().ref("User").child(user.uid);
-        firebaseRef.on('value').then(function(dataSnapshot) {
+        firebaseRef.on('value' , function(dataSnapshot) {
         date_lastlogin = dataSnapshot.val().lastlogindate;
         date_lastlogin_substring = date_lastlogin.substring(0,15);
         user_point = dataSnapshot.val().point;
