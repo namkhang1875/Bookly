@@ -104,6 +104,7 @@ function loginOnClick(){
     var email=document.getElementById('email').value;
     var psw = document.getElementById('psw').value;
     var isCannotLogin;
+
     firebase.auth().signInWithEmailAndPassword(email, psw).catch(function(error) {
         // Handle Errors here.
        
@@ -127,6 +128,14 @@ function loginOnClick(){
                 //window.location.replace("index.html");
             }
         },delayInMilliseconds);
+    
+    var user = firebase.auth().currentUser;
+    var lastLoginDate;
+    if(user != null)
+    {
+        lastLoginDate = user.date;
+        console.log(lastLoginDate);
+    }
 
 }
 
