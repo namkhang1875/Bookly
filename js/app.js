@@ -301,6 +301,7 @@ function dailypoint(){
             lastlogindate = date_now;
             firebaseRef.update(point);
             firebaseRef.update(lastlogindate);
+        }
     }
 }
 
