@@ -105,6 +105,18 @@ function loginOnClick(){
     var psw = document.getElementById('psw').value;
     var isCannotLogin;
 
+    var isEmailOk = False;
+    var mailre = '^[0-9]{8}@kmitl.[a-z]{2}.[a-z]{2}$';
+    if(email.match(mailre)){
+        console.log("email Ok");
+        isEmailOk = true;
+    }
+    
+    else if(!email.match(mailre)){
+        alert("โปรดใช้อีเมลสถาบัน");
+    }
+
+    if(isEmailOK){
     firebase.auth().signInWithEmailAndPassword(email, psw).catch(function(error) {
         // Handle Errors here.
        
@@ -128,6 +140,7 @@ function loginOnClick(){
                 //window.location.replace("index.html");
             }
         },delayInMilliseconds);
+    }
 }
 
 function changeStatus(email){
