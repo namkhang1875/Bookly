@@ -66,7 +66,9 @@ function insertData(email,dname,psw){
     var firebaseRef = firebase.database().ref("User");
     var errorCode;
     var isEmailExist;
-    firebase.auth().createUserWithEmailAndPassword(email, psw).catch(function(error) {
+    firebase.auth().createUserWithEmailAndPassword(email, psw).then(function success(user){
+        var uid = user.uid; // The UID of recently created user on firebase
+    }).catch(function(error) {
         // Handle Errors here.
         errorCode = error.code;
         if(errorCode == 'auth/email-already-in-use'){
@@ -87,12 +89,6 @@ function insertData(email,dname,psw){
                 
             }
         },delayInMilliseconds);
-        firebase.auth().signInWithEmailAndPassword(email, psw);
-        firebase.auth().onAuthStateChanged(function(user) {
-            if (user) {
-              var uid = user.uid;
-            }
-          });
         var date = Date(Date.now());
         var date_now = date.toString()
         firebaseRef.child(uid).set({
