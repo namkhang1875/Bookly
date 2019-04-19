@@ -92,7 +92,7 @@ function insertData(email,dname,psw){
                 dname:dname,
                 psw:psw,
                 point:"100",
-                date:date_now
+                lastlogindate:date_now
                  });
                 alert("ลงทะเบียนสำเร็จ กดตกลง");
                 window.location.replace("index.html");
@@ -278,16 +278,11 @@ function dailypoint(){
     var date_lastlogin;
     var date = Date(Date.now());
     var date_now = date.toString()
-    date_lastlogin = user.date;
-    console.log(date_lastlogin);
-    if(user == null){
-        user = firebase.auth().currentUser;
-        console.log(user);
-    }
+    console.log("login time : " + date_now);
     if(user != null){
         var firebaseRef = firebase.database().ref("User").child(user.uid);
         firebaseRef.once('value').then(function(dataSnapshot) {
-        console.log(dataSnapshot.val());
+        console.log("last login time : " + dataSnapshot.val().lastlogindate);
         });
     }
 }
