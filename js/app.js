@@ -3,6 +3,7 @@ function signUpOnClick(){
     var dname=document.getElementById('dname').value;
     var psw=document.getElementById('psw').value;
     var cpsw = document.getElementById('cpsw').value;
+    var point = 100;
 
     var isEmailOk =false;
     var isDnameOk =false;
@@ -47,7 +48,7 @@ function signUpOnClick(){
         isCpswOk = true;
     }
     if((isEmailOk&&isDnameOk)&&(isPswOk&&isCpswOk)){
-        insertData(email,dname,psw);
+        insertData(email,dname,psw,point);
     } 
 }
 
@@ -67,7 +68,8 @@ function insertData(email,dname,psw){
     firebaseRef.push({
         email:email,
         dname:dname,
-        psw:psw
+        psw:psw,
+        point:point
     });
     var errorCode;
     var isEmailExist;
