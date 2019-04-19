@@ -63,7 +63,7 @@ function showData(){
     });
 }
 
-function insertData(email,dname,psw){
+function insertData(email,dname,psw,point){
     var firebaseRef = firebase.database().ref("User");
     firebaseRef.push({
         email:email,
