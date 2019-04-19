@@ -285,7 +285,7 @@ function dailypoint(){
     var date = Date(Date.now());
     var date_now = date.toString()
     if(user != null){
-        date_lastlogin = user.metadata.lastSignInTime;
+        date_lastlogin = user.metadata.b.toString()
         console.log(date_lastlogin);
     }
 }
