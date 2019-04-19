@@ -106,7 +106,9 @@ function loginOnClick(){
     var isCannotLogin;
 
     var isEmailOk = false;
+    var isPswOk = false;
     var mailre = '^[0-9]{8}@kmitl.[a-z]{2}.[a-z]{2}$';
+
     if(email.match(mailre)){
         console.log("email Ok");
         isEmailOk = true;
@@ -115,8 +117,15 @@ function loginOnClick(){
     else if(!email.match(mailre)){
         alert("โปรดใช้อีเมลสถาบัน");
     }
+    if(psw.length==0){
+        alert("โปรดใส่รหัสผ่าน");
+    }
+    else if(psw.length >0){
+        console.log("password Ok");
+        isPswOk = true;
+    }
 
-    if(isEmailOk){
+    if(isEmailOk&&isPswOk){
     firebase.auth().signInWithEmailAndPassword(email, psw).catch(function(error) {
         // Handle Errors here.
        
