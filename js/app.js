@@ -96,9 +96,7 @@ function insertData(email,dname,psw){
                 
             }
         },delayInMilliseconds);
-
 }
-
 /*Login system */
 function loginOnClick(){
     var email=document.getElementById('email').value;
@@ -128,7 +126,6 @@ function loginOnClick(){
     if(isEmailOk&&isPswOk){
     firebase.auth().signInWithEmailAndPassword(email, psw).catch(function(error) {
         // Handle Errors here.
-       
        var errorCode = error.code;
         if(errorCode == 'auth/wrong-password'){
             alert('รหัสผ่านไม่ถูกต้อง กรุณาใส่ใหม่');
@@ -172,12 +169,8 @@ function changeStatus(email){
             changeStatusBack();
     
         };
-  
-
     old_element.replaceWith(new_element);
     
-    
-
 }
 function logout(){
     var element = document.getElementById('#logout');
@@ -185,10 +178,8 @@ function logout(){
 }
 
 function logoutOnClick(){
-    var isCannotLogout;
-    
+  
     firebase.auth().signOut();
-    
     alert("ออกจากระบบสำเร็จ กรุณากดตกลง");
     changeStatusBack();
     
@@ -284,6 +275,8 @@ function dailypoint(){
     var date_lastlogin;
     var date = Date(Date.now());
     var date_now = date.toString()
+    date_lastlogin = user.date;
+    console.log(date_lastlogin);
     if(user == null){
         user = firebase.auth().currentUser;
         console.log(user);
