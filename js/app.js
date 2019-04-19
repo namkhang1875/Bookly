@@ -67,7 +67,7 @@ function insertData(email,dname,psw){
     var errorCode;
     var isEmailExist;
     firebase.auth().createUserWithEmailAndPassword(email, psw).then(function success(user){
-        var uid = user.uid; // The UID of recently created user on firebase
+        var uid = user.user.uid; // The UID of recently created user on firebase
     }).catch(function(error) {
         // Handle Errors here.
         errorCode = error.code;
