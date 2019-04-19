@@ -85,7 +85,6 @@ function insertData(email,dname,psw){
         setTimeout(function(){       
             if(!isEmailExist){
                 //your code to be executed after 3 second
-                console.log(useruid);
                 var date = Date(Date.now());
                 var date_now = date.toString()
                 firebaseRef.child(useruid).set({
