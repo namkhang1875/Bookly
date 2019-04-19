@@ -52,7 +52,7 @@ function signUpOnClick(){
 }
 
 window.onload=function(){
-   showData();
+   //showData();
 }
 
 function showData(){
@@ -64,10 +64,14 @@ function showData(){
 
 function insertData(email,dname,psw){
     var firebaseRef = firebase.database().ref("User");
+    var date = Date(Date.now());
+    var date_now = date.toString()
     firebaseRef.push({
         email:email,
         dname:dname,
-        psw:psw
+        psw:psw,
+        point:"100",
+        date:date_now
     });
     var errorCode;
     var isEmailExist;
@@ -92,17 +96,36 @@ function insertData(email,dname,psw){
                 
             }
         },delayInMilliseconds);
-
 }
-
 /*Login system */
 function loginOnClick(){
     var email=document.getElementById('email').value;
     var psw = document.getElementById('psw').value;
     var isCannotLogin;
+
+    var isEmailOk = false;
+    var isPswOk = false;
+    var mailre = '^[0-9]{8}@kmitl.[a-z]{2}.[a-z]{2}$';
+
+    if(email.match(mailre)){
+        console.log("email Ok");
+        isEmailOk = true;
+    }
+    
+    else if(!email.match(mailre)){
+        alert("โปรดใช้อีเมลสถาบัน");
+    }
+    if(psw.length==0){
+        alert("โปรดใส่รหัสผ่าน");
+    }
+    else if(psw.length >0){
+        console.log("password Ok");
+        isPswOk = true;
+    }
+
+    if(isEmailOk&&isPswOk){
     firebase.auth().signInWithEmailAndPassword(email, psw).catch(function(error) {
         // Handle Errors here.
-       
        var errorCode = error.code;
         if(errorCode == 'auth/wrong-password'){
             alert('รหัสผ่านไม่ถูกต้อง กรุณาใส่ใหม่');
@@ -120,10 +143,11 @@ function loginOnClick(){
                 //your code to be executed after 3 second
                 alert("เข้าสู่ระบบสำเร็จ กรุณากดตกลง");
                 changeStatus(email);
+                dailypoint();
                 //window.location.replace("index.html");
             }
         },delayInMilliseconds);
-
+    }
 }
 
 function changeStatus(email){
@@ -145,12 +169,8 @@ function changeStatus(email){
             changeStatusBack();
     
         };
-  
-
     old_element.replaceWith(new_element);
     
-    
-
 }
 function logout(){
     var element = document.getElementById('#logout');
@@ -158,10 +178,8 @@ function logout(){
 }
 
 function logoutOnClick(){
-    var isCannotLogout;
-    
+  
     firebase.auth().signOut();
-    
     alert("ออกจากระบบสำเร็จ กรุณากดตกลง");
     changeStatusBack();
     
@@ -228,6 +246,15 @@ function changeStatusBack(){
                 },delayInMilliseconds);
             }
         old_element.replaceWith(new_element);
+}
+function dailypoint(){
+    var user = firebase.auth().currentUser;
+    console.log(user);
+    var date_lastlogin;
+    var date = Date(Date.now());
+    var date_now = date.toString()
+    date_lastlogin = user.date;
+    console.log(date_lastlogin);
 }
 
 /*Not using now */
