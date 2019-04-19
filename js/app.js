@@ -105,7 +105,7 @@ function loginOnClick(){
     var psw = document.getElementById('psw').value;
     var isCannotLogin;
 
-    var isEmailOk = False;
+    var isEmailOk = false;
     var mailre = '^[0-9]{8}@kmitl.[a-z]{2}.[a-z]{2}$';
     if(email.match(mailre)){
         console.log("email Ok");
