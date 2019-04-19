@@ -116,7 +116,7 @@ function loginOnClick(){
         alert("โปรดใช้อีเมลสถาบัน");
     }
 
-    if(isEmailOK){
+    if(isEmailOk){
     firebase.auth().signInWithEmailAndPassword(email, psw).catch(function(error) {
         // Handle Errors here.
        
