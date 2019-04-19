@@ -67,7 +67,7 @@ function insertData(email,dname,psw){
     var errorCode;
     var isEmailExist;
     firebase.auth().createUserWithEmailAndPassword(email, psw).then(function success(user){
-        var uid = user.user.uid; // The UID of recently created user on firebase
+        var useruid = user.user.uid; // The UID of recently created user on firebase
     }).catch(function(error) {
         // Handle Errors here.
         errorCode = error.code;
@@ -84,10 +84,10 @@ function insertData(email,dname,psw){
         setTimeout(function(){       
             if(!isEmailExist){
                 //your code to be executed after 3 second
-                console.log(uid);
+                console.log(useruid);
                 var date = Date(Date.now());
                 var date_now = date.toString()
-                firebaseRef.child(uid).set({
+                firebaseRef.child(useruid).set({
                 email:email,
                 dname:dname,
                 psw:psw,
