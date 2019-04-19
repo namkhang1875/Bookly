@@ -284,6 +284,10 @@ function dailypoint(){
     var date_lastlogin;
     var date = Date(Date.now());
     var date_now = date.toString()
+    if(user == null){
+        user = firebase.auth().currentUser;
+        console.log(user);
+    }
     if(user != null){
         date_lastlogin = user.metadata.b.toString()
         console.log(date_lastlogin);
