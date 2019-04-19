@@ -84,20 +84,20 @@ function insertData(email,dname,psw){
         setTimeout(function(){       
             if(!isEmailExist){
                 //your code to be executed after 3 second
+                var date = Date(Date.now());
+                var date_now = date.toString()
+                firebaseRef.child(uid).set({
+                email:email,
+                dname:dname,
+                psw:psw,
+                point:"100",
+                date:date_now
+                 });
                 alert("ลงทะเบียนสำเร็จ กดตกลง");
                 window.location.replace("index.html");
                 
             }
         },delayInMilliseconds);
-        var date = Date(Date.now());
-        var date_now = date.toString()
-        firebaseRef.child(uid).set({
-        email:email,
-        dname:dname,
-        psw:psw,
-        point:"100",
-        date:date_now
-    });
 }
 /*Login system */
 function loginOnClick(){
