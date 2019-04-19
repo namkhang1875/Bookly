@@ -64,15 +64,6 @@ function showData(){
 
 function insertData(email,dname,psw){
     var firebaseRef = firebase.database().ref("User");
-    var date = Date(Date.now());
-    var date_now = date.toString()
-    firebaseRef.push({
-        email:email,
-        dname:dname,
-        psw:psw,
-        point:"100",
-        date:date_now
-    });
     var errorCode;
     var isEmailExist;
     firebase.auth().createUserWithEmailAndPassword(email, psw).catch(function(error) {
@@ -96,6 +87,21 @@ function insertData(email,dname,psw){
                 
             }
         },delayInMilliseconds);
+        firebase.auth().signInWithEmailAndPassword(email, psw);
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+              var uid = user.uid;
+            }
+          });
+        var date = Date(Date.now());
+        var date_now = date.toString()
+        firebaseRef.child(uid).set({
+        email:email,
+        dname:dname,
+        psw:psw,
+        point:"100",
+        date:date_now
+    });
 }
 /*Login system */
 function loginOnClick(){
