@@ -279,10 +279,21 @@ function changeStatusBack(){
         old_element.replaceWith(new_element);
 }
 function dailypoint(){
-    var firebaseRef = firebase.database().ref("User" + currentUser.uid);
-    firebaseRef.once('value').then(function(dataSnapshot) {
+    var user = firebase.auth().currentUser;
+    console.log(user);
+    var date_lastlogin;
+    var date = Date(Date.now());
+    var date_now = date.toString()
+    if(user == null){
+        user = firebase.auth().currentUser;
+        console.log(user);
+    }
+    if(user != null){
+        var firebaseRef = firebase.database().ref("User" + currentUser.uid);
+        firebaseRef.once('value').then(function(dataSnapshot) {
         console.log(dataSnapshot.val());
-    });
+        });
+    }
 }
 
 /*Not using now */
