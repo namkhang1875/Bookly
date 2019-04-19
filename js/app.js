@@ -283,8 +283,8 @@ function dailypoint(){
     var user_point;
     console.log("login time : " + date_now);
     if(user != null){
-        var databaseRef = firebase.database().ref("User");
-        databaseRef.child(user.uid).on('value' , function(dataSnapshot) {
+        var firebaseRef = firebase.database().ref("User").child(user.uid);
+        firebaseRef.on('value' , function(dataSnapshot) {
         date_lastlogin = dataSnapshot.val().lastlogindate;
         date_lastlogin_substring = date_lastlogin.substring(0,15);
         user_point = dataSnapshot.val().point;
@@ -299,8 +299,8 @@ function dailypoint(){
         {
             point = user_point + 1;
             lastlogindate = date_now;
-            databaseRef.child(user.uid).update(point);
-            databaseRef.child(user.uid).update(lastlogindate);
+            firebaseRef.update(point);
+            firebaseRef.update(lastlogindate);
         }
     }
 }
