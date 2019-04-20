@@ -296,9 +296,9 @@ function dailypoint(){
         }
         else
         {
-            point = user_point + 1;
+            user_point++;
             firebaseRef.update({
-                "point":point,
+                "point":user_point,
                 "lastlogindate":date_now
             });
         }
