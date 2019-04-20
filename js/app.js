@@ -292,14 +292,14 @@ function dailypoint(){
         });
         if(date_lastlogin == date_now_substring)
         {
-            firebaseRef.update({lastlogindate:date_now}); //BUG!!!
+             firebaseRef.update({"lastlogindate":date_now});
         }
         else
         {
             point = user_point + 1;
             firebaseRef.update({
-                point:point,
-                lastlogindate:date_now //BUG!!!
+                "point":point,
+                "lastlogindate":date_now
             });
         }
     }
