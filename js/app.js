@@ -1,3 +1,4 @@
+
 function signUpOnClick(){
     var email=document.getElementById('email').value;
     var dname=document.getElementById('dname').value;
@@ -53,14 +54,15 @@ function signUpOnClick(){
 
 window.onload=function(){
    //showData();
+   
 }
 
-function showData(){
+/*function showData(){
     var firebaseRef = firebase.database().ref("User");
     firebaseRef.once('value').then(function(dataSnapshot) {
         console.log(dataSnapshot.val());
     });
-}
+}*/
 
 function insertData(email,dname,psw){
     var firebaseRef = firebase.database().ref("User");
@@ -92,7 +94,8 @@ function insertData(email,dname,psw){
                 dname:dname,
                 psw:psw,
                 point: 100,
-                lastlogindate:date_now
+                lastlogindate:date_now,
+                //bonusPerDay: 0
                  });
                 alert("ลงทะเบียนสำเร็จ กดตกลง");
                 window.location.replace("index.html");
@@ -145,6 +148,12 @@ function loginOnClick(){
             if(!isCannotLogin){
                 //your code to be executed after 3 second
                 alert("เข้าสู่ระบบสำเร็จ กรุณากดตกลง");
+                var user = firebase.auth().currentUser;
+                var firebaseRef = firebase.database().ref("User").child(user.uid);
+                    firebaseRef.on('value' , function(dataSnapshot) {
+                    user_point = dataSnapshot.val().point;
+                    console.log("Initial User point : "+user_point);
+                    });
                 changeStatus(email);
                 dailypoint();
                 //window.location.replace("index.html");
@@ -263,6 +272,13 @@ function changeStatusBack(){
                     if(!isCannotLogin){
                         //your code to be executed after 3 second
                         alert("เข้าสู่ระบบสำเร็จ กรุณากดตกลง");
+                        /*เมื่อ login ได้ ก็ดึงค่า point จาก firebase มาเลย เพื่อไม่ให้ค่าเป็น NaN  */
+                        var user = firebase.auth().currentUser;
+                        var firebaseRef = firebase.database().ref("User").child(user.uid);
+                            firebaseRef.on('value' , function(dataSnapshot) {
+                            user_point = dataSnapshot.val().point;
+                            console.log("Initial User point : "+user_point);
+                            });
                         changeStatus(email);
                         dailypoint();
                         //window.location.replace("index.html");
@@ -272,6 +288,9 @@ function changeStatusBack(){
         }
         old_element.replaceWith(new_element);
 }
+
+
+
 function dailypoint(){
     var user = firebase.auth().currentUser;
     console.log(user);
@@ -280,27 +299,46 @@ function dailypoint(){
     var date_now = date.toString()
     var date_now_substring = date_now.substring(0,15);
     var date_lastlogin_substring;
-    var user_point;
+    
+    
     console.log("login time : " + date_now);
     if(user != null){
         var firebaseRef = firebase.database().ref("User").child(user.uid);
         firebaseRef.on('value' , function(dataSnapshot) {
         date_lastlogin = dataSnapshot.val().lastlogindate;
         date_lastlogin_substring = date_lastlogin.substring(0,15);
-        user_point = dataSnapshot.val().point;
         console.log("last login time : " + date_lastlogin);
+        
+        
         });
+      
         if(date_lastlogin == date_now_substring)
         {
-             firebaseRef.update({"lastlogindate":date_now});
+            
+             firebaseRef.update({
+                "point":user_point,
+                 "lastlogindate":date_now
+                });
+             //console.log("User point after push : "+user_point);
         }
         else
         {
-            user_point++;
-            firebaseRef.update({
-                "point":user_point,
-                "lastlogindate":date_now
+            
+            var firebaseRef = firebase.database().ref("User").child(user.uid);
+            firebaseRef.on('value' , function(dataSnapshot) {
+            user_point = dataSnapshot.val().point;
+            user_point+=100;
+            //console.log("User point before push : "+user_point);
+            
             });
+            
+            var delayInMilliseconds = 1500; //3 second
+                setTimeout(function(){  
+                firebaseRef.update({
+                    "point":user_point,
+                    "lastlogindate":date_now
+                });
+            },delayInMilliseconds);
         }
     }
 }
@@ -330,3 +368,5 @@ function initApp(){
         }
     });
 }
+
+
