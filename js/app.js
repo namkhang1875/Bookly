@@ -91,7 +91,7 @@ function insertData(email,dname,psw){
                 email:email,
                 dname:dname,
                 psw:psw,
-                point:"100",
+                point: 100,
                 lastlogindate:date_now
                  });
                 alert("ลงทะเบียนสำเร็จ กดตกลง");
