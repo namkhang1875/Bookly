@@ -352,7 +352,7 @@ function searchBook(){
         console.log('----------------');
         dataSnapshot.forEach(function(childSnapshot){
             var key = childSnapshot.key;
-            if(bookname == null){
+            if(bookname == ""){
                 console.log(key);
             }
             else{
