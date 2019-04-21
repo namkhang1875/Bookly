@@ -334,6 +334,7 @@ function dailypoint(){
             
             var delayInMilliseconds = 1500; //3 second
                 setTimeout(function(){  
+                alert("รางวัลล็อกอินรายวัน + 100 points!!!");
                 firebaseRef.update({
                     "point":user_point,
                     "lastlogindate":date_now
