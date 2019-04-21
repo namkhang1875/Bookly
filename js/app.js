@@ -348,7 +348,7 @@ function searchBook(){
     var category = document.getElementById('category').value;
     var bookname = document.getElementById('search').value;
     var firebaseRef = firebase.database().ref("Book").orderByChild("category").equalTo(category).on('value', function(dataSnapshot){
-        if(bookname == ""){
+        if(bookname != ""){
             console.log("Searching " + bookname + " in "+ category);
         }
         else{
