@@ -367,8 +367,7 @@ function searchBook(){
             }
         });
     });
-
-
+    console.log("-------------------end result-------------------");
 }
 
 /*Not using now */
