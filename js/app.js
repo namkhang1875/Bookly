@@ -352,7 +352,7 @@ function searchBook(){
         console.log('----------------');
         dataSnapshot.forEach(function(childSnapshot){
             var childData = childSnapshot.val();
-            console.log(childData.catagory);
+            console.log(childData);
         });
     });
 
