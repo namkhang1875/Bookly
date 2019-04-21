@@ -312,7 +312,7 @@ function dailypoint(){
         
         });
       
-        if(date_lastlogin == date_now_substring)
+        if(date_lastlogin_substring == date_now_substring)
         {
             
              firebaseRef.update({
