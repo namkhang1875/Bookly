@@ -351,10 +351,18 @@ function searchBook(){
         console.log(dataSnapshot.val());
         console.log('----------------');
         dataSnapshot.forEach(function(childSnapshot){
-            var childData = childSnapshot.val();
-            console.log(childData);
+            var key = childSnapshot.key;
+            if(bookname == null){
+                console.log(key);
+            }
+            else{
+                if(key == bookname){
+                    console.log(key);
+                }
+            }
         });
     });
+
 
 }
 
