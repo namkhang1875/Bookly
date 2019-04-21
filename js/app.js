@@ -344,6 +344,20 @@ function dailypoint(){
     }
 }
 
+function searchBook(){
+    var category = document.getElementById('category').value;
+    var bookname = document.getElementById('search').value;
+    var firebaseRef = firebase.database().ref("Book").orderByChild("category").equalTo(category).on('value', function(dataSnapshot){
+        console.log(dataSnapshot.val());
+        console.log('----------------');
+        dataSnapshot.forEach(function(childSnapshot){
+            var childData = childSnapshot.val();
+            console.log(childData.catagory);
+        });
+    });
+
+}
+
 /*Not using now */
 function initApp(){
     firebase.auth().onAuthStateChanged(function(user){
