@@ -348,8 +348,8 @@ function searchBook(){
     var category = document.getElementById('category').value;
     var bookname = document.getElementById('search').value;
     var firebaseRef = firebase.database().ref("Book").orderByChild("category").equalTo(category).on('value', function(dataSnapshot){
-        console.log(dataSnapshot.val());
-        console.log('----------------');
+        console.log("Searching Result");
+        console.log("----------------");
         dataSnapshot.forEach(function(childSnapshot){
             var key = childSnapshot.key;
             if(bookname == ""){
