@@ -99,7 +99,7 @@
                                <div class="postarea">
                                     <form>
                                         <div class="post-box">
-                                            <input class="post" name="desc" type="text" placeholder="รายละเอียดของหนังสือ"></input>
+                                            <input class="postbox" name="desc" type="text" placeholder="รายละเอียดของหนังสือ"></input>
                                             <div class ="postandpickbutton">
                                                 <button class="post-button" type="button">โพสต์</button>
                                                 <button class="pickup-button" type="button">เลือกรูปภาพจากอุปกรณ์</button>
@@ -108,8 +108,8 @@
                                     </form>
                                     <hr width ="100%" color = "black" noshade></hr>
                                </div>  
-                            <div class ="feed">
-                                <div class ="post">
+                            <div id ="feed">
+                                <div id ="post">
                                     <div id ="book">
                                         {{name}} 
                                     </div>
@@ -125,6 +125,10 @@
                                         </button>
                                     </div>
                                  </div>
+                                 <div class="feed-footer">
+                                    <button class="load-button" type="button" onclick="loadmore()">โหลดเพิ่มเติม</button>
+                                 </div>
+                                 
                             </div> 
                              
                       </div>
