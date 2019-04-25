@@ -377,7 +377,7 @@ function loadmore(){
     for (i=1;i<=limitpost;i++){
     var newpost = document.createElement('div');
     newpost.className = 'post';
-    newpost.innerHTML = '<div id ="book">{{name}} </div> <div id = "imgarea"><img id="myimg" src="" alt=""></div><div id = "btnarea"><button class ="tradebtn" v-on:click = "trade">ยืม</button><button class ="borrowbtn" v-on:click="borrow">แลก</button></div>';
+    newpost.innerHTML = '<div id ="book">{{getBookName()}} </div> <div id = "imgarea"><img id="myimg" src="" alt=""></div><div id = "btnarea"><button class ="tradebtn" v-on:click = "trade">ยืม</button><button class ="borrowbtn" v-on:click="borrow">แลก</button></div>';
     document.getElementById("feed").appendChild(newpost);
     if(i == 6){
         var newfeedfooter = document.createElement('div');

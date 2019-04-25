@@ -4,7 +4,6 @@ var book = new Vue({
         name: 'bookname',
         writer: 'writername',
         category: 'category'
-        
     },
     methods: {
         getBookName : function(){
