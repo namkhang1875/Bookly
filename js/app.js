@@ -361,7 +361,7 @@ function searchBook(){
                 console.log(key);
             }
             else{
-                if(key == bookname){
+                if(key.includes(bookname)){
                     console.log(key);
                 }
             }
